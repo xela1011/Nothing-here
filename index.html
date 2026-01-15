@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nothing</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #box, #loader {
+    display: none;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  button {
+    margin-top: 40px;
+    padding: 26px 65px;
+    font-size: 28px;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  #loaderText {
+    font-size: 34px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Loading screen -->
+<div id="loader">
+  <div id="loaderText">Loading nothing...</div>
+</div>
+
+<!-- Main content -->
+<div id="box">
+  <h1 id="text">There is nothing</h1>
+  <button onclick="nextStep()">Next</button>
+</div>
+
+<script>
+  let step = 0;
+  const startTime = Date.now();
+
+  const messages = [
+    "There is nothing",
+    "Still nothing",
+    "Why are you clicking?",
+    "Don’t waste your time clicking",
+    "Seriously, there is NOTHING",
+    "Your patience is impressive",
+    "Almost there…",
+    "Finalizing results…"
+  ];
+
+  const loadingTexts = [
+    "Loading nothing…",
+    "Preparing absolutely nothing…",
+    "Please wait, doing nothing…",
+    "Almost done with nothing…",
+    "Still loading nothing…",
+    "Optimizing nothing…",
+    "Calculating useless data…",
+    "Finishing nothing…"
+  ];
+
+  function showLoader(callback) {
+    document.getElementById("box").style.display = "none";
+    document.getElementById("loader").style.display = "block";
+
+    const randomText =
+      loadingTexts[Math.floor(Math.random() * loadingTexts.length)];
+    document.getElementById("loaderText").innerText = randomText;
+
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      callback();
+    }, 8000);
+  }
+
+  // Initial fake load
+  showLoader(() => {
+    document.getElementById("box").style.display = "block";
+  });
+
+  function nextStep() {
+    showLoader(() => {
+      step++;
+
+      if (step < messages.length) {
+        document.getElementById("text").innerText = messages[step];
+        document.getElementById("box").style.display = "block";
+      } else {
+        const wastedSeconds = Math.floor((Date.now() - startTime) / 1000);
+        const minutes = String(Math.floor(wastedSeconds / 60)).padStart(2, "0");
+        const seconds = String(wastedSeconds % 60).padStart(2, "0");
+
+        document.getElementById("text").innerText =
+          `✅ SUCCESSFULLY WASTED ${minutes}:${seconds} TIME 😐`;
+        document.querySelector("button").style.display = "none";
+        document.getElementById("box").style.display = "block";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
+fakeOff").style.display = "block";
+        document.body.style.background = "#000";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
